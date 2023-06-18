@@ -1,0 +1,94 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 mt-5 px-5">
+                <ul class="list-group shadow">
+                    <li [ngClass]="currentActiveTab == 'Edit-profile' ? 'list-group-item active py-3' : 'list-group-item py-3'" (click)="switchProfileActiveTab('Edit-profile')"><fa-icon [icon]="faUser"></fa-icon> Profile</li>
+                    <li [ngClass]="currentActiveTab == 'Change-password' ? 'list-group-item active py-3' : 'list-group-item py-3'" (click)="switchProfileActiveTab('Change-password')"><fa-icon [icon]="faKey"></fa-icon> Change Password</li>
+                    <li class="list-group-item py-3" (click)="logout($event)"><fa-icon [icon]="faArrowRightFromBracket"></fa-icon> Logout</li>
+                  </ul>
+        </div>
+        <div class="col-lg-9 mt-5 px-5">
+            <div class="row shadow-sm rounded p-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                      <li class="breadcrumb-item active" aria-current="page">{{currentActiveTab}}</li>
+                    </ol>
+                  </nav>
+                <div class="row title">
+                    <div class="col-lg-12 d-flex justify-content-between">
+                        <h3>Profile</h3>
+                        <button class="float-end" [hidden]="isEditing" (click)="toggleEditProfile($event)">Edit</button>
+                    </div>
+                </div>
+                <div class="row profile-pic">
+                    <div class="col-lg-3 my-5">
+                        <img src="https://i.pinimg.com/originals/7f/24/d8/7f24d81c34fc9ed92e5d1a71c1969d36.png"  [width]="200">
+                    </div>
+                    <div class="col-lg-3 my-5">
+                        <button class="btn btn-primary me-3">View Avatar</button> 
+                        <button  class="btn btn-primary">Delete Avatar</button>
+                    </div>
+                </div>
+                <form>
+                    <div class="row" [hidden]="!isSavedProfile">
+                        <div class="col-lg-12">
+                            <div class="alert alert-success" role="alert">
+                                The profile has been saved
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                      <div class="col-lg-6">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                      </div>
+                      <div class="col-lg-6">
+                        <label for="inputText">Full Name</label>
+                        <input type="text" class="form-control" id="inputText4" placeholder="Full Name">
+                      </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-lg-12">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Address Line 1">
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-lg-12">
+                            <label for="inputAddress2">Address 2</label>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="Address Line 2">
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                      <div class="col-lg-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" id="inputCity" placeholder="City">
+                      </div>
+                      <div class="col-lg-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control">
+                          <option selected>Choose your state</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
+                      </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-lg-1">
+                            <button [hidden]="!isEditing" type="submit" class="btn btn-primary mt-3" (click)="toggleEditProfile($event)">Cancel</button>
+                        </div>
+                        <div class="col-lg-1">
+                            <button [hidden]="!isEditing" type="submit" class="btn btn-primary mt-3" (click)="editProfile($event)">Save</button>
+                        </div>
+                    </div>
+                  </form>
+            </div>   
+        </div>
+    </div>
+    
+</div>

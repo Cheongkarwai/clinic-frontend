@@ -1,0 +1,41 @@
+.title{
+
+    h3,button{
+        color:#603FEF;
+    }
+
+    button{
+        cursor:pointer;
+        border:0;
+        background-color: transparent;
+    }
+}
+
+.list-group{
+    li{
+        cursor:pointer;
+    }
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color:#603FEF !important;
+    border-color: #603FEF;
+    
+}
+
+.breadcrumb-item :not(.active){
+    color:#603FEF;
+}
+
+.list-group{
+
+    .list-group-item.active{
+        background-color:#603FEF;
+        border:#603FEF;
+    }
+}
+
+img{
+    border-radius:50%;
+    border:3px solid #603FEF;
+}

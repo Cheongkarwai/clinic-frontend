@@ -1,0 +1,7 @@
+<nav class="d-flex justify-content-center">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item" (click)="getCurrentPage(i)" *ngFor="let item of [].constructor(totalPages); let i = index"><a class="page-link">{{i}}</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav>
