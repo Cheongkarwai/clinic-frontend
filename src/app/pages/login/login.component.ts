@@ -32,23 +32,32 @@ export class LoginComponent implements OnInit {
   });
   }
 
-  login(){
+  handleClickLogin(){
+    if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
+    }
+    else{
+      this.requestLogin();
+    }
+  }
+
+  requestLogin(){
     this.authService.login({username:this.username?.getRawValue(),password:this.password?.getRawValue()})
-                    .subscribe({next:({data})=>{
-                      history.pushState(null,'');
-                      Swal.fire({
-                        title:'Success Login',
-                        icon:'success',
-                        text:'You have successfully login',
-                      }).then(result=>{
-                        this.router.navigateByUrl('/chatroom')
-                        this.authService.saveToken(data['loginUser']);
-                      });
-                    },
-                    error:err=>Swal.fire({
-                      title:'Failed Login',
-                      icon:'error',
-                      text:err['message']})})
+        .subscribe({next:({data})=>{
+          history.pushState(null,'');
+          Swal.fire({
+            title:'Success Login',
+            icon:'success',
+            text:'You have successfully login',
+          }).then(result=>{
+            this.router.navigateByUrl('/chatroom')
+            this.authService.saveToken(data['loginUser']);
+          });
+        },
+        error:err=>Swal.fire({
+          title:'Failed Login',
+          icon:'error',
+          text:err['message']})})
   }
 
   confirm(){
