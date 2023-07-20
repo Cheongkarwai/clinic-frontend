@@ -1,0 +1,173 @@
+<div class="row title">
+    <div class="col-lg-12 d-flex justify-content-between">
+      <h3>Profile</h3>
+      <!-- <button
+        class="float-end border"
+        [hidden]="isEditing"
+        (click)="toggleEditProfile($event)"
+      > -->
+        <fa-icon [icon]="faPenSquare" class="float-end edit-icon"
+        [hidden]="isEditing" (click)="toggleEditProfile($event)"></fa-icon>
+      <!-- </button> -->
+    </div>
+  </div>
+  <div class="row profile-pic">
+    <div class="col-lg-3 my-5">
+      <img class="img-fluid"
+        src="https://i.pinimg.com/originals/7f/24/d8/7f24d81c34fc9ed92e5d1a71c1969d36.png"
+        [width]="200"
+      />
+    </div>
+    <div class="col-lg-3 my-5">
+      <button class="btn btn-primary me-3">View Avatar</button>
+      <button class="btn btn-primary">Delete Avatar</button>
+    </div>
+  </div>
+  <form [formGroup]="userProfileForm">
+    <div class="row" [hidden]="!isSavedProfile">
+      <div class="col-lg-12">
+        <div class="alert alert-success" role="alert">
+          The profile has been saved
+        </div>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-lg-6">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          formControlName="username"
+          placeholder="Username"
+          [ngClass]="{'is-invalid' : username?.invalid && (username?.touched || username?.dirty)}"
+        />
+        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+          <div *ngIf="username?.errors?.['required']" class="error">
+              <small>Username is required.
+              </small>
+          </div>
+          <div *ngIf="username?.errors?.['minlength']" class="error">
+            <small>Length must be more than {{username?.errors?.['minlength']['requiredLength']}} .
+            </small>
+        </div>
+      </div>
+      </div>
+      <div class="col-lg-6">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fullName"
+          formControlName="fullName"
+          placeholder="Full Name"
+          [ngClass]="{'is-invalid' : fullName?.invalid && (fullName?.touched || fullName?.dirty)}"
+        />
+        <div *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)">
+          <div *ngIf="fullName?.errors?.['required']" class="error">
+              <small>Full name is required.
+              </small>
+          </div>
+      </div>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-lg-12">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          placeholder="Email"
+          [ngClass]="{'is-invalid' : email?.invalid && (email?.touched || email?.dirty)}"
+        />
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <div *ngIf="email?.errors?.['required']" class="error">
+              <small>Email is required.
+              </small>
+          </div>
+          <div *ngIf="email?.errors?.['email']" class="error">
+            <small>Invalid email.
+            </small>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-lg-12">
+        <label for="inputAddress">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputAddress"
+          placeholder="Address Line 1"
+          formControlName="addressLine1"
+        />
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-lg-12">
+        <label for="inputAddress2">Address 2</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputAddress2"
+          placeholder="Address Line 2"
+          formControlName="addressLine2"
+        />
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-lg-6">
+        <label for="inputCity">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCity"
+          placeholder="City"
+          formControlName="city"
+        />
+      </div>
+      <div class="col-lg-4">
+        <label for="inputState">State</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose your state</option>
+        </select>
+      </div>
+      <div class="col-lg-2">
+        <label for="inputZip">Zip</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputZip"
+          placeholder="Zipcode"
+          formControlName="zipcode"
+        />
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-lg-1">
+        <button
+          [hidden]="!isEditing"
+          type="submit"
+          class="btn btn-primary mt-3"
+          (click)="toggleEditProfile($event)"
+        >
+          Cancel
+        </button>
+      </div>
+      <div class="col-lg-1">
+        <button
+          [hidden]="!isEditing"
+          type="submit"
+          class="btn btn-primary mt-3"
+          (click)="editProfile($event)"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <app-toasts [title]="toastTitle" [body]="toastMessage"></app-toasts>

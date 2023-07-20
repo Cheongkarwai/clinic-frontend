@@ -1,0 +1,11 @@
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color:#603FEF !important;
+    border-color: #603FEF;
+    
+}
+
+.edit-icon{
+    font-size:25px;
+    cursor:pointer;
+    color:#603FEF;
+}
