@@ -33,9 +33,18 @@
         background-color:#603FEF;
         border:#603FEF;
     }
+
+    .list-group-item:hover{
+        background-color:#d6d6d6;
+        color:#603FEF;
+    }
 }
 
 img{
     border-radius:50%;
     border:3px solid #603FEF;
+}
+
+.error{
+    color:red;
 }
