@@ -17,6 +17,7 @@
         src="https://i.pinimg.com/originals/7f/24/d8/7f24d81c34fc9ed92e5d1a71c1969d36.png"
         [width]="200"
       />
+      <button (click)="openUploadPictureDialog(uploadPicture)">Upload Profile Picture</button>
     </div>
     <div class="col-lg-3 my-5">
       <button class="btn btn-primary me-3">View Avatar</button>
@@ -170,4 +171,18 @@
     </div>
   </form>
 
-  <app-toasts [title]="toastTitle" [body]="toastMessage"></app-toasts>
+
+
+<!--Modal-->
+<ng-template #uploadPicture let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload New Profile Picture</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <app-upload-file (uploadFile)="addFiles($event)"></app-upload-file>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="handleClickUploadFile($event)">Upload</button>
+  </div>
+</ng-template>

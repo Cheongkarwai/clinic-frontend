@@ -1,10 +1,12 @@
 import { HttpBackend } from '@angular/common/http';
 import { Component, OnInit ,OnDestroy} from '@angular/core';
 import { HttpService } from './http.service';
-import { UserHttpService } from './core/user/user-http.service';
-import { Observable, map, filter, every, BehaviorSubject,Subject,takeUntil } from 'rxjs';
+import { UserService } from './core/user/user.service';
+import { Observable, map, filter, every, BehaviorSubject,Subject,takeUntil, interval, delay, retry, retryWhen } from 'rxjs';
 import { User } from './core/user/user.model';
 import { UserInfo } from './core/user/user-info.model';
+import {OAuthService} from "angular-oauth2-oidc";
+import {authCodeFlowConfig} from "./app.module";
 
 @Component({
   selector: 'app-root',
@@ -27,12 +29,17 @@ export class AppComponent implements OnInit ,OnDestroy{
 
   unsubscribe:Subject<void> = new Subject<void>();
 
-  constructor(private userHttp: UserHttpService) {}
+  constructor(private userHttp: UserService,private oauthService:OAuthService) {}
 
   ngOnInit(): void {
-    this.userHttp.findUsers();
+
+    this.oauthService.configure(authCodeFlowConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
     //subscribed
-    this.userHttp.getUsers$.subscribe(res=>this.userInfo = res);
+    interval(100000).subscribe(x=>{
+      this.userHttp.findUsers();
+      this.userHttp.getUsers$.subscribe(res=>this.userInfo = res);
+    });
     console.log(this.userInfo);
   }
 

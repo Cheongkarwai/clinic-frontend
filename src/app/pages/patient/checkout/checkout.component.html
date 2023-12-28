@@ -1,0 +1,453 @@
+<div class="container-fluid px-5">
+  <mat-stepper #stepper [linear]="false" style="background-color:#a2a0a5;">
+    <mat-step [stepControl]="basicInfoForm" label="Fill in your information">
+      <div class="row pt-5">
+      <div class="col-md-8 pt-3">
+        <form class="row g-3 border shadow rounded p-5" [formGroup]="basicInfoForm">
+          <div class="col-md-6">
+<!--            <label for="email" class="form-label">Email</label>-->
+<!--            <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': email?.invalid && (email?.touched || email?.dirty)}">-->
+<!--            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">-->
+<!--              <div *ngIf="email?.errors?.['required']" class="error">-->
+<!--                <small>Email is required.-->
+<!--                </small>-->
+<!--              </div>-->
+<!--              <div *ngIf="email?.errors?.['email']" class="error">-->
+<!--                <small>Invalid email.-->
+<!--                </small>-->
+<!--              </div>-->
+<!--            </div>-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email Address</mat-label>
+              <input matInput formControlName="email" placeholder="Enter your email" required>
+              <mat-error *ngIf="basicInfoForm.get('email')?.getError('required')">Email is required</mat-error>
+              <mat-error *ngIf="basicInfoForm.get('email')?.getError('email')">Invalid email</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+<!--            <label for="contactNo" class="form-label">Password</label>-->
+<!--            <input type="text" class="form-control" id="contactNo" formControlName="contactNo" [ngClass]="{'is-invalid': contactNo?.invalid && (contactNo?.touched || contactNo?.dirty)}">-->
+<!--            <div *ngIf="contactNo?.invalid && (contactNo?.dirty || contactNo?.touched)">-->
+<!--              <div *ngIf="contactNo?.errors?.['required']" class="error">-->
+<!--                <small>Contact no is required</small>-->
+<!--              </div>-->
+<!--            </div>-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Contact number</mat-label>
+              <input matInput formControlName="contactNo" placeholder="Enter your email" required>
+              <mat-error *ngIf="basicInfoForm.get('contactNo')?.getError('required')">Email is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12" formGroupName="address">
+<!--            <label for="addressLine1" class="form-label">Address</label>-->
+<!--            <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1" placeholder="1234 Main St" [ngClass]="{'is-invalid':addressLine1?.invalid && (addressLine1?.touched || addressLine1?.dirty)}">-->
+<!--            <div *ngIf="addressLine1?.invalid && (addressLine1?.dirty || addressLine1?.touched)">-->
+<!--              <div *ngIf="addressLine1?.errors?.['required']" class="error">-->
+<!--                <small>Address line 1 is required</small>-->
+<!--              </div>-->
+<!--            </div>-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Address Line 1</mat-label>
+              <input matInput formControlName="addressLine1" placeholder="Enter your address line 1" required>
+              <mat-error *ngIf="basicInfoForm.get('address')?.get('addressLine1')?.getError('required')">Address line 1 is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12" formGroupName="address">
+<!--            <label for="addressLine2" class="form-label">Address 2</label>-->
+<!--            <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2" placeholder="Apartment, studio, or floor" [ngClass]="{'is-invalid':addressLine2?.invalid && (addressLine2?.touched || addressLine2?.dirty)}">-->
+<!--            <div *ngIf="addressLine2?.invalid && (addressLine2?.dirty || addressLine2?.touched)">-->
+<!--              <div *ngIf="addressLine2?.errors?.['required']" class="error">-->
+<!--                <small>Address line 2 is required</small>-->
+<!--              </div>-->
+<!--            </div>-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Address Line 2</mat-label>
+              <input matInput formControlName="addressLine2" placeholder="Enter your address line 2" required>
+              <mat-error *ngIf="basicInfoForm.get('address')?.get('addressLine2')?.getError('required')">Address Line 2 is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" formGroupName="address">
+<!--            <label for="city" class="form-label">City</label>-->
+<!--            <input type="text" class="form-control" id="city" formControlName="city" [ngClass]="{'is-invalid' : city?.invalid && (city?.touched || city?.dirty)}">-->
+<!--            <div *ngIf="city?.invalid && (city?.dirty || city?.touched)">-->
+<!--              <div *ngIf="city?.errors?.['required']" class="error">-->
+<!--                <small>City is required</small>-->
+<!--              </div>-->
+<!--            </div>-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" placeholder="Enter your city" required>
+              <mat-error *ngIf="basicInfoForm.get('address')?.get('city')?.getError('required')">City is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+<!--            <label for="inputState" class="form-label">State</label>-->
+<!--            <select id="inputState" class="form-select">-->
+<!--              <option selected>Choose...</option>-->
+<!--              <option>...</option>-->
+<!--            </select>-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>State</mat-label>
+              <mat-select formControlName="state">
+                <mat-option>Any</mat-option>
+              </mat-select>
+              <mat-error *ngIf="basicInfoForm.get('address')?.get('state')?.getError('required')">City is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2" formGroupName="address">
+<!--            <label for="zipcode" class="form-label">Zip</label>-->
+<!--            <input type="text" class="form-control" formControlName="zipcode" id="zip" [ngClass]="{'is-invalid' : zipcode?.invalid && (zipcode?.touched || zipcode?.dirty)}">-->
+<!--            <div *ngIf="zipcode?.invalid && (zipcode?.dirty || zipcode?.touched)">-->
+<!--              <div *ngIf="zipcode?.errors?.['required']" class="error">-->
+<!--                <small>Zipcode is required</small>-->
+<!--              </div>-->
+<!--            </div>-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Zipcode</mat-label>
+              <input matInput formControlName="zipcode" placeholder="Enter your zipcode" required>
+              <mat-error *ngIf="basicInfoForm.get('address')?.get('zipcode')?.getError('required')">Zipcode is required</mat-error>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4 px-3 ">
+        <div class="p-4 border rounded" style="height:46vh;overflow-y:auto;overflow-x: hidden;">
+          <div class="row shadow bg-white rounded p-3 mb-3" *ngFor="let product of products; let i = index">
+            <app-product-banner [product]="product"></app-product-banner>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2 pt-5">
+          <button mat-button matStepperNext (click)="handleClickNext()">Next</button>
+          <!--          <button [disabled]="isButtonLoading" class="btn btn-primary py-2 float-end" (click)="handleClickNext()">-->
+          <!--            <span *ngIf="isButtonLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
+          <!--            Next</button>-->
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="paymentMethodForm" label="Select your payment method">
+      <div class="row pt-5">
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="py-3">Payment Method</h4>
+              <ng-container *ngFor="let paymentMethod of paymentMethods">
+                <div class="d-flex justify-content-between border rounded pt-2 ps-2 my-2">
+                  <div>
+                    <fa-icon [icon]="faCreditCard"></fa-icon>
+                    {{paymentMethod['method']}}
+                  </div>
+                  <div>
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedPaymentMethod" (ngModelChange)="changePaymentMethod()">
+                      <mat-radio-button [value]="paymentMethod"></mat-radio-button>
+                    </mat-radio-group>
+                    <!--                <div class="form-check">-->
+                    <!--                  <input class="form-check-input border" type="radio" name="paymentMethod" [value]="paymentMethod['method']" [(ngModel)]="selectedPaymentMethod" >-->
+                    <!--                </div>-->
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 pt-4" *ngIf="selectedPaymentMethod.id === 1">
+              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+<!--              <form class="border rounded p-4 w-100">-->
+<!--                <div class="mb-3">-->
+<!--                  <label for="card-number" class="form-label">Card Number</label>-->
+<!--                  &lt;!&ndash; <input type="text" class="form-control" id="card-number" placeholder="Example input placeholder"> &ndash;&gt;-->
+<!--                  <div id="card-number" class="form-control">-->
+
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                  <label for="cvv" class="form-label">CVV</label>-->
+<!--                  &lt;!&ndash; <input type="text" class="form-control" id="cvv" placeholder="Example input placeholder"> &ndash;&gt;-->
+<!--                  <div id="cvv" class="form-control"></div>-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                  <label for="expiration-date" class="form-label">CVV</label>-->
+<!--                  <div id="expiration-date" class="form-control"></div>-->
+<!--                  &lt;!&ndash; <input type="text" class="form-control" id="expiration-date" placeholder="Example input placeholder"> &ndash;&gt;-->
+<!--                </div>-->
+<!--                <input type="hidden" name="payment_method_nonce" />-->
+<!--              </form>-->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="rounded shadow p-5 h-100">
+            <div class="row">
+              <h3 class="text-center">Total Summary</h3>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h6>Total (USD)</h6>
+              </div>
+              <div class="col-md-6">
+                <p class="text-right">{{calculateTotal() | currency : 'USD' : true : '1.2-2'}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h6>Tax (%)</h6>
+              </div>
+              <div class="col-md-6">
+                <p class="text-right">{{ 0.06 | percent }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Subtotal (USD)</h5>
+              </div>
+              <div class="col-md-6">
+                <p class="text-right">{{calculateTotal() | currency : 'USD' : true : '1.2-2'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+    <div class="row pt-3">
+        <div class="col-md-3">
+            Fill in basic information
+        </div>
+        <div class="col-md-3 text-center">
+            Select payment method
+        </div>
+        <div class="col-md-3 text-center">
+            Proceed with payment
+        </div>
+        <div class="col-md-3 text-right">
+            Completed
+        </div>
+    </div>
+    <div class="progress">
+        <div *ngIf="selectedStage.index === 0" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        <div *ngIf="selectedStage.index === 1" class="progress-bar" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
+        <div *ngIf="selectedStage.index === 2" class="progress-bar" role="progressbar" style="width: 63%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+        <div *ngIf="selectedStage.index === 3" class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="row pt-5" *ngIf="selectedStage['index'] === 0 ">
+        <div class="col-md-8 pt-3">
+            <form class="row g-3 border shadow bg-white rounded p-5" [formGroup]="basicInfoForm">
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': email?.invalid && (email?.touched || email?.dirty)}">
+                  <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                    <div *ngIf="email?.errors?.['required']" class="error">
+                        <small>Email is required.
+                        </small>
+                    </div>
+                    <div *ngIf="email?.errors?.['email']" class="error">
+                        <small>Invalid email.
+                        </small>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="contactNo" class="form-label">Password</label>
+                  <input type="text" class="form-control" id="contactNo" formControlName="contactNo" [ngClass]="{'is-invalid': contactNo?.invalid && (contactNo?.touched || contactNo?.dirty)}">
+                  <div *ngIf="contactNo?.invalid && (contactNo?.dirty || contactNo?.touched)">
+                    <div *ngIf="contactNo?.errors?.['required']" class="error">
+                        <small>Contact no is required</small>
+                    </div>
+                </div>
+                </div>
+                <div class="col-12" formGroupName="address">
+                  <label for="addressLine1" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1" placeholder="1234 Main St" [ngClass]="{'is-invalid':addressLine1?.invalid && (addressLine1?.touched || addressLine1?.dirty)}">
+                  <div *ngIf="addressLine1?.invalid && (addressLine1?.dirty || addressLine1?.touched)">
+                    <div *ngIf="addressLine1?.errors?.['required']" class="error">
+                        <small>Address line 1 is required</small>
+                    </div>
+                </div>
+                </div>
+                <div class="col-12" formGroupName="address">
+                  <label for="addressLine2" class="form-label">Address 2</label>
+                  <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2" placeholder="Apartment, studio, or floor" [ngClass]="{'is-invalid':addressLine2?.invalid && (addressLine2?.touched || addressLine2?.dirty)}">
+                  <div *ngIf="addressLine2?.invalid && (addressLine2?.dirty || addressLine2?.touched)">
+                    <div *ngIf="addressLine2?.errors?.['required']" class="error">
+                        <small>Address line 2 is required</small>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-6" formGroupName="address">
+                  <label for="city" class="form-label">City</label>
+                  <input type="text" class="form-control" id="city" formControlName="city" [ngClass]="{'is-invalid' : city?.invalid && (city?.touched || city?.dirty)}">
+                  <div *ngIf="city?.invalid && (city?.dirty || city?.touched)">
+                    <div *ngIf="city?.errors?.['required']" class="error">
+                        <small>City is required</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">State</label>
+                  <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-md-2" formGroupName="address">
+                  <label for="zipcode" class="form-label">Zip</label>
+                  <input type="text" class="form-control" formControlName="zipcode" id="zip" [ngClass]="{'is-invalid' : zipcode?.invalid && (zipcode?.touched || zipcode?.dirty)}">
+                  <div *ngIf="zipcode?.invalid && (zipcode?.dirty || zipcode?.touched)">
+                    <div *ngIf="zipcode?.errors?.['required']" class="error">
+                        <small>Zipcode is required</small>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <div class="col-md-4 px-3 ">
+            <div class="p-4 border rounded" style="height:46vh;overflow-y:auto;overflow-x: hidden;">
+                <div class="row shadow bg-white rounded p-3 mb-3" *ngFor="let product of products; let i = index">
+                    <app-product-banner [product]="product"></app-product-banner>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-5" *ngIf="selectedStage.index === 1">
+        <div class="col-md-3">
+            Payment Method
+            <ng-container *ngFor="let paymentMethod of paymentMethods">
+                <div class="row border rounded p-2 mb-2">
+                    <div class="col-md-11">
+                        <fa-icon [icon]="faCreditCard"></fa-icon>
+                        {{paymentMethod['method']}}
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-check">
+                            <input class="form-check-input border" type="radio" name="paymentMethod" [value]="paymentMethod['method']" [(ngModel)]="selectedPaymentMethod" >
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="col-md-4 px-5">
+            <!-- <div class="row border rounded p-2 mb-2">
+                <div class="col-md-11">
+                    <fa-icon [icon]="faCreditCard"></fa-icon>
+                    Credit Card/Debit Card
+                </div>
+                <div class="col-md-1">
+                    <div class="form-check">
+                        <input class="form-check-input border" type="radio" name="paymentMethod" [(ngModel)]="paymentMethods['selected']" >
+                    </div>
+                </div>
+            </div>
+            <div class="row border rounded p-2 mb-2">
+                <div class="col-md-11">
+                    <fa-icon [icon]="faBuildingColumns"></fa-icon>
+                    Touch & Go E-wallet
+                </div>
+                <div class="col-md-1">
+                    <div class="form-check">
+                        <input class="form-check-input border" type="radio" name="paymentMethod" >
+                    </div>
+                </div>
+            </div>
+            <div class="row border rounded p-2 mb-2">
+                <div class="col-md-11">
+                    <fa-icon [icon]="faBuildingColumns"></fa-icon>
+                    Bank
+                </div>
+                <div class="col-md-1">
+                    <div class="form-check">
+                        <input class="form-check-input border" type="radio" name="paymentMethod" >
+                    </div>
+                </div>
+            </div> -->
+            <form class="border rounded p-4">
+                <div class="mb-3">
+                    <label for="card-number" class="form-label">Card Number</label>
+                    <!-- <input type="text" class="form-control" id="card-number" placeholder="Example input placeholder"> -->
+                    <div id="card-number" class="form-control">
+
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="cvv" class="form-label">CVV</label>
+                    <!-- <input type="text" class="form-control" id="cvv" placeholder="Example input placeholder"> -->
+                    <div id="cvv" class="form-control"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="expiration-date" class="form-label">CVV</label>
+                    <div id="expiration-date" class="form-control"></div>
+                    <!-- <input type="text" class="form-control" id="expiration-date" placeholder="Example input placeholder"> -->
+                </div>
+                <input type="hidden" name="payment_method_nonce" />
+              </form>
+        </div>
+        <div class="col-md-5">
+            <div class="rounded shadow p-5">
+                <div class="row">
+                    <h3 class="text-center">Total Summary</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Total (USD)</h6>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right">{{calculateTotal() | currency : 'USD' : true : '1.2-2'}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Tax (%)</h6>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right">{{ 0.06 | percent }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Subtotal (USD)</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right">{{calculateTotal() | currency : 'USD' : true : '1.2-2'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="{value : isOrderCompleted | async} as status" class="d-flex justify-content-center pt-5">
+            <div class="d-flex justify-content-center flex-column pt-5">
+                <div [ngSwitch]="status.value">
+                    <ng-container *ngSwitchCase="false">
+                        <span class="spinner-border text-secondary" style="width:200px;height:200px;" role="status" aria-hidden="true"></span>
+                        <p class="pt-5 text-center">Proceeding with your order...</p>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="true">
+                        <span class="spinner-border text-success" style="width:200px;height:200px;" role="status" aria-hidden="true"></span>
+                        <p class="pt-5 text-center">Successfully placed an order.</p>
+                        <p class="pt-3 text-center">Redirecting....</p>
+                    </ng-container>
+                </div>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2 pt-5">
+            <button [disabled]="isButtonLoading" class="btn btn-primary py-2 float-end" (click)="handleClickNext()">
+                <span *ngIf="isButtonLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Next</button>
+        </div>
+    </div>
+</div>

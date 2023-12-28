@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/core/user/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-change-password',
+  selector: 'app-recovery-password',
   templateUrl: './recover-password.component.html',
   styleUrls: ['./recover-password.component.css']
 })
@@ -18,7 +19,7 @@ export class RecoverPasswordComponent implements OnInit {
   })
 
 
-  constructor(private fb:FormBuilder,private userService:UserService,private activatedRoute:ActivatedRoute) { }
+  constructor(private fb:FormBuilder,private userService:UserService,private activatedRoute:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
 
@@ -33,11 +34,23 @@ export class RecoverPasswordComponent implements OnInit {
     if(this.changePasswordForm.invalid){
       this.changePasswordForm.markAllAsTouched();
     }else{
-      let email = "cheongkarwai5@gmail.com";
-      this.userService.changePasswordByUsername(email,this.newPassword?.getRawValue())
-            .subscribe(({data})=>{
-
-            });
+      const username = this.activatedRoute.snapshot.queryParamMap.get('username');
+      this.userService.changePasswordByUsername(username ? username : '',this.newPassword?.getRawValue())
+            .subscribe({next:res=>{
+              Swal.fire({
+                title:'Success',
+                text:'You have changed your password',
+                icon:'success'
+              }).then(result=>{
+                this.router.navigateByUrl('/login')
+              })
+            },
+            error:err=>Swal.fire({
+              title:'Unable to proceed',
+              text:err,
+              icon:'error'
+            })
+          });
     }
 
 

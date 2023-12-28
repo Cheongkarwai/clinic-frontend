@@ -1,0 +1,141 @@
+<!--<div class="container-fluid">-->
+
+<!--  <div class="sidebar" [ngClass]="isSidebarOpen ? 'sidebar active' : 'sidebar'">-->
+<!--    <div class="top">-->
+<!--      <div class="logo">-->
+<!--&lt;!&ndash;        <mat-icon>menu</mat-icon>&ndash;&gt;-->
+<!--      </div>-->
+<!--      <i class='fa-solid fa-bars' id="btn" (click)="toggle($event)"></i>-->
+<!--    </div>-->
+<!--    <div class="user">-->
+<!--      <div>-->
+<!--        <p class="bold">Welcome user</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <ul>-->
+<!--      <li>-->
+<!--        <a href="#">-->
+<!--          <i class="fa-solid fa-cart-shopping"></i>-->
+<!--          <span class="nav-item">Dashboard</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Dashboard</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a  [routerLink]="['upload-property']">-->
+<!--          <i class="fa-solid fa-cart-shopping"></i>-->
+<!--          <span class="nav-item">Property</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Property</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">-->
+<!--          <i class="fa-solid fa-cart-shopping"></i>-->
+<!--          <span class="nav-item">Categories</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Categories</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">-->
+<!--          <i class='fa-solid fa-cart-shopping' ></i>-->
+<!--          <span class="nav-item">Orders</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Orders</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">-->
+<!--          <i class="fa-solid fa-cart-shopping"></i>-->
+<!--          <span class="nav-item">Customers</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Customers</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">-->
+<!--          <i class='fa-solid fa-cart-shopping' ></i>-->
+<!--          <span class="nav-item">Shipping</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Shipping</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">-->
+<!--          <i class="fa-solid fa-cart-shopping"></i>-->
+<!--          <span class="nav-item">Settings</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Settings</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">-->
+<!--          <i class="fa-solid fa-cart-shopping"></i>-->
+<!--          <span class="nav-item">Logout</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Logout</span>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a (click)="logout()">-->
+<!--          <i class="fa-solid fa-sign-out-alt"></i>-->
+<!--          <span class="nav-item">Logout</span>-->
+<!--        </a>-->
+<!--        <span class="tooltip">Logout</span>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-3 w-100">
+  <a class="navbar-brand" href="#">CLINIC</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" (click)="openCanvas(content)">Menu</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title">CLINIC</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <nav>
+      <ul  class="offcanvas-ul">
+        <li>
+          <a class="py-3 ps-2 text-dark" routerLink="/download-brochure">Dashboard</a>
+        </li>
+        <li>
+          <a class="py-3 ps-2 text-dark" (click)="openCanvas(patientCanvas)">
+            <div class="d-flex justify-content-between">
+              <span>Patient Affairs</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</ng-template>
+
+<ng-template #patientCanvas let-offcanvas>
+  <div class="offcanvas-header">
+    <button type="button" class="btn offcanvas-title" aria-label="Close" (click)="offcanvas.dismiss('Cross click')">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body">
+    <nav>
+      <ul  class="offcanvas-ul">
+        <li>
+          <a class="py-3 ps-2 text-dark">Manage Appointment</a>
+          <a class="py-3 ps-2 text-dark">Manage Patient</a>
+          <a class="py-3 ps-2 text-dark">Medical History</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</ng-template>
+
+

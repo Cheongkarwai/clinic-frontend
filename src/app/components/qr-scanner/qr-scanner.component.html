@@ -1,0 +1,19 @@
+
+  <select [(ngModel)]="selectedDevice">
+    <option *ngFor="let device of availableDevices" [ngValue]="device">
+      {{ device.label }}
+    </option>
+  </select>
+  <zxing-scanner
+    #scanner
+    start="true"
+    [torch]="true"
+    [formats]="formats"
+    [device]="selectedDevice"
+    (scanSuccess)="handleResult($event)"
+    (permissionResponse)="handlePermission($event)"
+  ></zxing-scanner>
+  <div *ngIf="!hasPermission">
+    <p>You don't have permission. Please enable it</p>
+  </div>
+

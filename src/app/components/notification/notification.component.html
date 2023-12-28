@@ -1,0 +1,15 @@
+<!--<div class="border p-3 notification-container">-->
+<!--  <ng-container *ngFor="let notification of notifications">-->
+<!--    <div class="border p-2">-->
+<!--      <h5>{{notification.title}}</h5>-->
+<!--      <h6>{{notification.description}}</h6>-->
+<!--    </div>-->
+<!--  </ng-container>-->
+<h2 mat-dialog-title>Notification</h2>
+<mat-dialog-content *ngFor="let notification of notifications$ | async">
+    <div class="border p-2 mb-3">
+      <h5>{{notification.title}}</h5>
+      <h6>{{notification.description}}</h6>
+    </div>
+</mat-dialog-content>
+<!--</div>-->

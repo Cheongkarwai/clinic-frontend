@@ -1,0 +1,30 @@
+
+    <div class="col-md-2">
+        <img
+        class="img-fluid img-thumbnail" src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg' />
+    </div>
+    <div class="col-md-9">
+        <div class="py-2">
+            <span style="font-weight: bold;font-size:1.2rem;">{{product.name}}</span>
+        </div>
+        <div>
+            <fa-icon [icon]="faStar"class="pe-1"></fa-icon>
+            <fa-icon [icon]="faStar" class="px-1"></fa-icon>
+            <fa-icon [icon]="faStar" class="px-1"></fa-icon>
+            <fa-icon [icon]="faStar" class="px-1"></fa-icon>
+            <fa-icon [icon]="faStar" class="px-1"></fa-icon>
+        </div>
+        <div>
+           <span style="font-weight: bold;font-size:1.5rem;">RM {{product.price}}</span>
+        </div>
+        <div>
+            {{product.description}}
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="float-end"> 
+            <fa-icon class="mx-1" [icon]="faHeart"></fa-icon>
+            <fa-icon class="mx-1" [icon]="faPenToSquare"></fa-icon>
+        </div>
+    </div>
+

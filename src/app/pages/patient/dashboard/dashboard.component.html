@@ -1,0 +1,57 @@
+<div class="container-fluid p-4">
+    <div class="row g-3">
+        <div class="col-3">
+            <div class="purple-gradient color-block z-depth-1 p-3 shadow bg-white rounded d-flex justify-content-between">
+              <span class="text-light weight-bold h6">Total of Pending Appointments</span>
+              <span class="text-light weight-bold h6" [countUp]="200" [duration]="10000"></span>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="blue-gradient color-block z-depth-1 p-3 shadow bg-white rounded d-flex justify-content-between">
+              <span class="text-light weight-bold h6">Total of Keep Appointment</span>
+              <span class="text-light weight-bold h6" [countUp]="200" [duration]="10000"></span>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="aqua-gradient color-block z-depth-1 p-3 shadow bg-white rounded d-flex justify-content-between">
+              <span class="text-light weight-bold h6">Total of Missed Appointments</span>
+              <span class="text-light weight-bold h6" [countUp]="200" [duration]="10000"></span>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="peach-gradient color-block z-depth-1 p-3 shadow bg-white rounded d-flex justify-content-between">
+              <span class="text-light weight-bold h6">Total of Drafted Appointment</span>
+              <span class="text-light weight-bold h6" [countUp]="200" [duration]="10000"></span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="shadow p-3 mb-5 bg-white rounded" *ngIf="{ months: (months$ | async) ?? [] , data: (appointmentsGroupByMonth$ | async) ?? [] } as barChart">
+                <app-bar-chart [labels]="barChart.months" [data]="barChart.data"></app-bar-chart>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="shadow p-3 mb-5 bg-white rounded" style="max-height:320px;">
+                <h3>Your last appointments</h3>
+              <cdk-virtual-scroll-viewport  style="min-height:250px;" [itemSize]="50">
+                <summary class="p-3 border my-3 rounded" *cdkVirtualFor="let appointment of (appointments$ | async)">
+                  <div class="card-body">
+                    <h3 class="card-title">Appointment #ID {{appointment.id}}</h3>
+                    <p>{{appointment.timestamp | date : 'short'}}</p>
+                    <a href="#" class="btn btn-outline-secondary">View Details</a>
+                  </div>
+                </summary>
+              </cdk-virtual-scroll-viewport>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe
+  width="600"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+    &q=Space+Needle,Seattle+WA">
+</iframe>

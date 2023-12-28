@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+    <div [ngClass]="row.rowStyle" *ngFor="let row of formAttribute">
+        <ng-container *ngFor="let control of row.inputs">
+            <div [ngClass]="control.containerStyle" >
+                <label>{{control.label}}</label>
+                <ng-container [ngSwitch]="control.type">
+                    <select *ngSwitchCase="'dropdown'" [formControlName]="control.key" [ngClass]="control.inputStyle">
+                        <option *ngIf="control.defaultOption !== null" value="">{{control.defaultOption}}</option>
+                        <option *ngFor="let option of control.options">{{option}}</option>
+                    </select>
+                    <input *ngSwitchCase="'datetime-local'" [type]="control.type" [formControlName]="control.key" [ngClass]="control.inputStyle" />
+                    <input *ngSwitchDefault [type]="control.type" [formControlName]="control.key" [ngClass]="control.inputStyle" />
+                </ng-container>
+                <ng-container *ngIf="control.validators.length > 0">
+                    <div *ngIf="form.get(control.key)?.invalid && (form.get(control.key)?.dirty || form.get(control.key)?.touched)">
+                        <ng-container *ngFor="let validator of control.validators">
+                            <div *ngIf="form.get(control.key)?.errors?.[validator.type]" class="error">
+                                <small>
+                                {{validator.message}}
+                                </small>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+    <button class="btn btn-primary" (click)="handleClickSubmitForm()">Book appointment</button>
+</form>
